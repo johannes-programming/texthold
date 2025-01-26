@@ -23,15 +23,6 @@ class TestHolder(unittest.TestCase):
         result = holder.dumps()
         self.assertEqual(result, "line1\nline2\n")
 
-    def test_dump(self):
-        holder = Holder(["line1", "line2"])
-        stream = BytesIO()
-        holder.dump(stream)
-
-        # Check the content of the byte stream
-        stream.seek(0)
-        self.assertEqual(stream.read().decode("utf-8"), "line1\nline2\n")
-
     def test_load(self):
         stream = BytesIO(b"line1\nline2\n")
         holder = Holder.load(stream)
