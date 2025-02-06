@@ -14,6 +14,37 @@
                     </dd>
                     <dt id="install">Installation</dt>
                     <dd id="installCorpus"></dd>
+                    <dt id="features">Features</dt>
+                    <dd id="featuresCorpus">
+                        <dl class="heading4">
+                            <dt id="Holder">texthold.Holder(data: Iterable = []) -> None</dt>
+                            <dd>
+                                <p>
+                                    This subclass of <code>datahold.OkayList</code> stores text as a list of lines.
+                                </p>
+                                <dl class="heading4">
+                                    <dt>data</dt>
+                                    <dd>
+                                        <p>
+                                            This property represents the lines of text.
+                                        </p>
+                                    </dd>
+                                    <dt>dump(self, stream: Any) -> None</dt>
+                                    <dd><p>This method dumps the data into a byte stream.</p></dd>
+                                    <dt>dumpintofile(self, file: str) -> None</dt>
+                                    <dd><p>This method dumps the data into a file.</p></dd>
+                                    <dt>dumps(self) -> str</dt>
+                                    <dd><p>This method dumps the data as a string.</p></dd>
+                                    <dt>load(cls, stream: Any) -> Self</dt>
+                                    <dd><p>This classmethod loads a new instance from a given byte stream.</p></dd>
+                                    <dt>loadfromfile(cls, file: str) -> Self</dt>
+                                    <dd><p>This classmethod loads a new instance from a given file.</p></dd>
+                                    <dt>loads(cls, string: str) -> Self</dt>
+                                    <dd><p>This classmethod loads a new instance from a given string.</p></dd>
+                                </dl>
+                            </dd>
+                        </dl>
+                    </dd>
                     <dt id="testing">Testing</dt>
                     <dd id="testingCorpus"></dd>
                     <dt id="license">License</dt>
