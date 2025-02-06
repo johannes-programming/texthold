@@ -14,7 +14,7 @@ class Holder(OkayList):
         return list(self._data)
 
     @data.setter
-    def data(self, value: Iterable, /):
+    def data(self, value: Iterable, /) -> None:
         normed = list()
         for x in value:
             for y in str(x).split("\n"):
