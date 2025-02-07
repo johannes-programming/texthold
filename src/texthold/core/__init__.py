@@ -1,5 +1,3 @@
-import os
-import tempfile
 from typing import *
 
 from datahold import OkayList
@@ -17,25 +15,18 @@ class Holder(OkayList):
     def data(self, value: Iterable, /) -> None:
         normed = list()
         for x in value:
-            for y in str(x).split("\n"):
-                normed.append(y)
+            normed += str(x).split("\n")
         self._data = normed
 
     @data.deleter
     def data(self) -> None:
         self._data = list()
 
-    def dump(self, stream: Any) -> None:
+    def dump(self, stream: BinaryIO) -> None:
         "This method dumps the data into a byte stream."
-        filename: str = "a.txt"
-        with tempfile.TemporaryDirectory() as tmpDir:
-            tmpFile: str = os.path.join(tmpDir, filename)
-            self.dumpintofile(tmpFile)
-            with open(tmpFile, "rb") as tmpRbStream:
-                buffer: bytes = tmpRbStream.read()
-        stream.write(buffer)
+        stream.write(self.dumps().encode())
 
-    def dumpintofile(self, file: str) -> None:
+    def dumpintofile(self, file: Any) -> None:
         "This method dumps the data into a file."
         with open(file, "w") as stream:
             for item in self:
@@ -46,18 +37,12 @@ class Holder(OkayList):
         return "\n".join(self._data) + "\n"
 
     @classmethod
-    def load(cls, stream: Any) -> Self:
+    def load(cls, stream: BinaryIO) -> Self:
         "This classmethod loads a new instance from a given byte stream."
-        buffer: bytes = stream.read()
-        filename: str = "a.txt"
-        with tempfile.TemporaryDirectory() as tmpDir:
-            tmpFile: str = os.path.join(tmpDir, filename)
-            with open(tmpFile, "wb") as tmpWbStream:
-                tmpWbStream.write(buffer)
-            return cls.loadfromfile(tmpFile)
+        return cls.loads(stream.read().decode())
 
     @classmethod
-    def loadfromfile(cls, file: str) -> Self:
+    def loadfromfile(cls, file: Any) -> Self:
         "This classmethod loads a new instance from a given file."
         with open(file, "r") as stream:
             return cls.loads(stream.read())
