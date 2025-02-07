@@ -12,6 +12,8 @@
                     <dd id="introCorpus">
                         <p>This project provides a class that holds text.</p>
                     </dd>
+                    <dt id="links">Links</dt>
+                    <dd id="linksCorpus"></dd>
                     <dt id="install">Installation</dt>
                     <dd id="installCorpus"></dd>
                     <dt id="features">Features</dt>
@@ -29,15 +31,15 @@
                                             This property represents the lines of text.
                                         </p>
                                     </dd>
-                                    <dt>dump(self, stream: Any) -> None</dt>
+                                    <dt>dump(self, stream: BinaryIO) -> None</dt>
                                     <dd><p>This method dumps the data into a byte stream.</p></dd>
-                                    <dt>dumpintofile(self, file: str) -> None</dt>
+                                    <dt>dumpintofile(self, file: Any) -> None</dt>
                                     <dd><p>This method dumps the data into a file.</p></dd>
                                     <dt>dumps(self) -> str</dt>
                                     <dd><p>This method dumps the data as a string.</p></dd>
-                                    <dt>load(cls, stream: Any) -> Self</dt>
+                                    <dt>load(cls, stream: BinaryIO) -> Self</dt>
                                     <dd><p>This classmethod loads a new instance from a given byte stream.</p></dd>
-                                    <dt>loadfromfile(cls, file: str) -> Self</dt>
+                                    <dt>loadfromfile(cls, file: Any) -> Self</dt>
                                     <dd><p>This classmethod loads a new instance from a given file.</p></dd>
                                     <dt>loads(cls, string: str) -> Self</dt>
                                     <dd><p>This classmethod loads a new instance from a given string.</p></dd>
@@ -49,8 +51,6 @@
                     <dd id="testingCorpus"></dd>
                     <dt id="license">License</dt>
                     <dd id="licenseCorpus"></dd>
-                    <dt id="links">Links</dt>
-                    <dd id="linksCorpus"></dd>
                     <dt id="impressum">Impressum</dt>
                     <dd id="impressumCorpus"></dd>
                 </dl>
