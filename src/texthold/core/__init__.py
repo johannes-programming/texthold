@@ -52,9 +52,10 @@ class Holder(OkayList):
             return cls.loads(stream.read())
 
     @classmethod
-    def loads(cls: type, string: str) -> Self:
+    def loads(cls: type, string: Any) -> Self:
         "This classmethod loads a new instance from a given string."
-        if string.endswith("\n"):
-            string = string[:-1]
-        data: list = string.split("\n")
-        return cls(data)
+        text: str = str(string)
+        if text.endswith("\n"):
+            text = text[:-1]
+        ans: Self = cls(text.split("\n"))
+        return ans
