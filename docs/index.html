@@ -19,7 +19,7 @@
                     <dt id="features">Features</dt>
                     <dd id="featuresCorpus">
                         <dl class="heading4">
-                            <dt id="Holder">texthold.Holder(data: Iterable = []) -> None</dt>
+                            <dt id="Holder">texthold.Holder(data: Iterable = ()) -> None</dt>
                             <dd>
                                 <p>
                                     This subclass of <code>datahold.OkayList</code> stores text as a list of lines.
@@ -41,7 +41,7 @@
                                     <dd><p>This classmethod loads a new instance from a given byte stream.</p></dd>
                                     <dt>loadfromfile(file: Any) -> Self</dt>
                                     <dd><p>This classmethod loads a new instance from a given file.</p></dd>
-                                    <dt>loads(string: str) -> Self</dt>
+                                    <dt>loads(string: Any) -> Self</dt>
                                     <dd><p>This classmethod loads a new instance from a given string.</p></dd>
                                 </dl>
                             </dd>
