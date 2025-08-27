@@ -6,7 +6,7 @@ requires = [
 
 [project]
 authors = [
-    { email = "johannes-programming@mailfence.com", name = "Johannes" },
+    { email = "johannes.programming@gmail.com", name = "Johannes" },
 ]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -19,14 +19,14 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = [
-    "datahold>=1.1.8",
+    "datahold>=1.1.10,<2",
 ]
 description = "This project provides a class that holds text."
 keywords = []
 name = "texthold"
 readme = "README.rst"
 requires-python = ">=3.11"
-version = "1.0.0"
+version = "1.0.1"
 
 [project.license]
 file = "LICENSE.txt"
