@@ -57,13 +57,20 @@
             </dd>
         </dl>
     </body>
-    <script src="https://www.johannes-programming.online/script.js"></script>
-    <script>
+    <script type="module">
+        import {
+            setupImpressumCorpus,
+            setupInstallCorpus,
+            setupLicenseCorpus,
+            setupLinksCorpus,
+            setupTestingCorpus,
+            addMetaAndLinkTags,
+        } from "https://www.johannes-programming.online/script.js";
+        setupImpressumCorpus("texthold");
         setupInstallCorpus("texthold");
-        setupTestingCorpus("texthold");
         setupLicenseCorpus("texthold");
         setupLinksCorpus("texthold");
-        setupImpressumCorpus("texthold");
+        setupTestingCorpus("texthold");
         addMetaAndLinkTags();
     </script>
 </html>
