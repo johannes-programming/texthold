@@ -1,7 +1,7 @@
 [build-system]
 build-backend = "setuptools.build_meta"
 requires = [
-    "setuptools>=61.0",
+    "setuptools>=64.0",
 ]
 
 [project]
@@ -19,14 +19,14 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = [
-    "datahold>=1.1.10,<2",
+    "datahold>=1.2,<2",
 ]
 description = "This project provides a class that holds text."
 keywords = []
 name = "texthold"
 readme = "README.rst"
 requires-python = ">=3.11"
-version = "1.0.2"
+version = "1.0.3"
 
 [project.license]
 file = "LICENSE.txt"
