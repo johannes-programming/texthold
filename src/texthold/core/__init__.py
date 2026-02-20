@@ -1,11 +1,39 @@
 from typing import *
 
-from datahold import OkayList
+import cmp3
+import setdoc
+from datahold import HoldList
+from datarepr import datarepr
 
-__all__ = ["Holder"]
+__all__ = ["TextHolder"]
 
 
-class Holder(OkayList):
+class TextHolder(cmp3.CmpABC, HoldList[str]):
+
+    data: tuple[str, ...]
+
+    __slots__ = ()
+
+    @setdoc.basic
+    def __bool__(self: Self) -> bool:
+        return bool(self._data)
+
+    @setdoc.basic
+    def __cmp__(self: Self, other: Any) -> Any:
+        return cmp3.cmp(self._data, tuple(other), mode="le")
+
+    @setdoc.basic
+    def __format__(self: Self, format_spec: Any = "", /) -> str:
+        return format(self._data, str(format_spec))
+
+    @setdoc.basic
+    def __repr__(self: Self) -> str:
+        return datarepr(type(self).__name__, list(self))
+
+    @setdoc.basic
+    def __str__(self: Self) -> str:
+        return repr(self)
+
     @property
     def data(self: Self) -> list[str]:
         "This property represents the lines of text."
@@ -19,10 +47,6 @@ class Holder(OkayList):
         for x in value:
             normed += str(x).split("\n")
         self._data = normed
-
-    @data.deleter
-    def data(self: Self) -> None:
-        self._data = list()
 
     def dump(self: Self, stream: BinaryIO) -> None:
         "This method dumps the data into a byte stream."

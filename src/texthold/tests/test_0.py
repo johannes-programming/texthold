@@ -4,7 +4,7 @@ import unittest
 from io import BytesIO
 from typing import *
 
-from texthold.core import Holder
+from texthold.core import TextHolder
 
 __all__ = ["TestHolder"]
 
@@ -12,48 +12,53 @@ __all__ = ["TestHolder"]
 class TestHolder(unittest.TestCase):
 
     def test_data_property(self: Self) -> None:
-        holder: Holder
-        holder = Holder(["line1", "line2"])
+        holder: TextHolder
+        holder = TextHolder(["line1", "line2"])
         self.assertEqual(holder.data, ["line1", "line2"])
         holder.data = ["new line1\nnew line2", "line3"]
         self.assertEqual(holder.data, ["new line1", "new line2", "line3"])
-        del holder.data
-        self.assertEqual(holder.data, [])
+
+    def test_del(self: Self) -> None:
+        holder: TextHolder
+        holder = TextHolder(["new line1", "new line2", "line3"])
+        with self.assertRaises(Exception):
+            del holder.data
+        self.assertEqual(holder.data, ["new line1", "new line2", "line3"])
 
     def test_dumps(self: Self) -> None:
-        holder: Holder
+        holder: TextHolder
         result: Any
-        holder = Holder(["line1", "line2"])
+        holder = TextHolder(["line1", "line2"])
         result = holder.dumps()
         self.assertEqual(result, "line1\nline2\n")
 
     def test_load(self: Self) -> None:
-        holder: Holder
+        holder: TextHolder
         stream: BytesIO
         stream = BytesIO(b"line1\nline2\n")
-        holder = Holder.load(stream)
+        holder = TextHolder.load(stream)
         self.assertEqual(holder.data, ["line1", "line2"])
 
     def test_dumpintofile_and_loadfromfile(self: Self) -> None:
         content: Any
-        holder: Holder
+        holder: TextHolder
         loaded_holder: Any
-        holder = Holder(["line1", "line2"])
+        holder = TextHolder(["line1", "line2"])
         with tempfile.NamedTemporaryFile(delete=False) as temp_file:
             temp_file.close()
             holder.dumpintofile(temp_file.name)
             with open(temp_file.name, "r") as f:
                 content = f.read()
                 self.assertEqual(content, "line1\nline2\n")
-            loaded_holder = Holder.loadfromfile(temp_file.name)
+            loaded_holder = TextHolder.loadfromfile(temp_file.name)
             self.assertEqual(loaded_holder.data, ["line1", "line2"])
             os.unlink(temp_file.name)
 
     def test_loads(self: Self) -> None:
-        holder: Holder
+        holder: TextHolder
         string: str
         string = "line1\nline2\n"
-        holder = Holder.loads(string)
+        holder = TextHolder.loads(string)
         self.assertEqual(holder.data, ["line1", "line2"])
 
 

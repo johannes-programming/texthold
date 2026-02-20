@@ -3,7 +3,7 @@ import os
 import unittest
 from typing import *
 
-from texthold.core import Holder
+from texthold.core import TextHolder
 
 __all__ = ["TestHolder"]
 
@@ -12,7 +12,7 @@ class TestHolder(unittest.TestCase):
 
     def setUp(self: Self) -> None:
         "This setup initializes a Holder instance for testing."
-        self.holder = Holder(["Hello", "World"])
+        self.holder = TextHolder(["Hello", "World"])
 
     def test_data_property_getter(self: Self) -> None:
         "This test tests the data property getter."
@@ -30,8 +30,8 @@ class TestHolder(unittest.TestCase):
 
     def test_data_property_deleter(self: Self) -> None:
         "This test tests deleting the data property."
-        del self.holder.data
-        self.assertEqual(self.holder.data, [])
+        with self.assertRaises(Exception):
+            del self.holder.data
 
     def test_dumps(self: Self) -> None:
         "This test tests the dumps method."
@@ -46,44 +46,44 @@ class TestHolder(unittest.TestCase):
 
     def test_load(self: Self) -> None:
         "This test tests the load method from a binary stream."
-        loaded_holder: Holder
+        loaded_holder: TextHolder
         stream: io.BytesIO
         stream = io.BytesIO(b"Test\nLoad\n")
-        loaded_holder = Holder.load(stream)
+        loaded_holder = TextHolder.load(stream)
         self.assertEqual(loaded_holder.data, ["Test", "Load"])
 
     def test_loads(self: Self) -> None:
         "This test tests the loads method."
-        loaded_holder: Holder
-        loaded_holder = Holder.loads("Test\nLoad\n")
+        loaded_holder: TextHolder
+        loaded_holder = TextHolder.loads("Test\nLoad\n")
         self.assertEqual(loaded_holder.data, ["Test", "Load"])
 
     def test_dumpintofile_and_loadfromfile(self: Self) -> None:
         "This test tests dumping to and loading from a file."
         filename: str
-        loaded_holder: Holder
+        loaded_holder: TextHolder
         filename = "test_holder.txt"
         self.holder.dumpintofile(filename)
-        loaded_holder = Holder.loadfromfile(filename)
+        loaded_holder = TextHolder.loadfromfile(filename)
         self.assertEqual(loaded_holder.data, self.holder.data)
         os.remove(filename)
 
     def test_empty_initialization(self: Self) -> None:
         "This test tests initializing Holder with no data."
-        empty_holder: Holder
-        empty_holder = Holder([])
+        empty_holder: TextHolder
+        empty_holder = TextHolder([])
         self.assertEqual(empty_holder.data, [])
 
     def test_mixed_type_input(self: Self) -> None:
         "This test tests initializing Holder with mixed-type input."
-        mixed_holder: Holder
-        mixed_holder = Holder(["String", 123, 45.67])
+        mixed_holder: TextHolder
+        mixed_holder = TextHolder(["String", 123, 45.67])
         self.assertEqual(mixed_holder.data, ["String", "123", "45.67"])
 
     def test_multiline_string_input(self: Self) -> None:
         "This test tests initializing Holder with multiline strings."
-        multiline_holder: Holder
-        multiline_holder = Holder(["Line1\nLine2", "Line3"])
+        multiline_holder: TextHolder
+        multiline_holder = TextHolder(["Line1\nLine2", "Line3"])
         self.assertEqual(multiline_holder.data, ["Line1", "Line2", "Line3"])
 
 
