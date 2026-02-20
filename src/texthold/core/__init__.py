@@ -13,8 +13,9 @@ class Holder(OkayList):
 
     @data.setter
     def data(self: Self, value: Iterable, /) -> None:
-        normed: list = list()
+        normed: list
         x: Any
+        normed = list()
         for x in value:
             normed += str(x).split("\n")
         self._data = normed
@@ -29,8 +30,8 @@ class Holder(OkayList):
 
     def dumpintofile(self: Self, file: Any) -> None:
         "This method dumps the data into a file."
-        stream: Any
         item: Any
+        stream: Any
         with open(file, "w") as stream:
             for item in self:
                 print(item, file=stream)
@@ -54,8 +55,8 @@ class Holder(OkayList):
     @classmethod
     def loads(cls: type, string: Any) -> Self:
         "This classmethod loads a new instance from a given string."
-        text: str = str(string)
+        text: str
+        text = str(string)
         if text.endswith("\n"):
             text = text[:-1]
-        ans: Self = cls(text.split("\n"))
-        return ans
+        return cls(text.split("\n"))
