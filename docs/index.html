@@ -10,7 +10,8 @@
                 <p>
                     Minor Version:
                     <select id="version">
-                        <option selected>1.0</option>
+                        <option>1.0</option>
+                        <option selected>2.0</option>
                     </select>
                 </p>
             </dt>
@@ -27,7 +28,7 @@
                     <dt id="features">Features</dt>
                     <dd id="featuresCorpus">
                         <dl class="heading4" version="1.0">
-                            <dt id="Holder">texthold.Holder(data: Iterable = ()) -> None</dt>
+                            <dt id="1--Holder">texthold.Holder(data: Iterable = ()) -> None</dt>
                             <dd>
                                 <p>
                                     This subclass of <code>datahold.OkayList</code> stores text as a list of lines.
@@ -54,6 +55,40 @@
                                 </dl>
                             </dd>
                             <dt id="1--test">texthold.test() -> unittest.TextTestRunner</dt>
+                            <dd class="testingCorpus"></dd>
+                        </dl>
+                        <dl class="heading4" version="2.0">
+                            <dt id="2--Holder">texthold.TextHolder(data: Iterable = ()) -> None</dt>
+                            <dd>
+                                <p>
+                                    This subclass of <code>datahold.HoldList</code> stores text as a list of lines.
+                                </p>
+                                <dl class="heading4">
+                                    <dt>__hash__ = ()</dt>
+                                    <dd></dd>
+                                    <dt>__slots__ = ()</dt>
+                                    <dd></dd>
+                                    <dt>data: tuple[str, ...]</dt>
+                                    <dd>
+                                        <p>
+                                            This property represents the lines of text.
+                                        </p>
+                                    </dd>
+                                    <dt>dump(stream: BinaryIO) -> None</dt>
+                                    <dd><p>This method dumps the data into a byte stream.</p></dd>
+                                    <dt>dumpintofile(file: Any) -> None</dt>
+                                    <dd><p>This method dumps the data into a file.</p></dd>
+                                    <dt>dumps() -> str</dt>
+                                    <dd><p>This method dumps the data as a string.</p></dd>
+                                    <dt>load(stream: BinaryIO) -> Self</dt>
+                                    <dd><p>This classmethod loads a new instance from a given byte stream.</p></dd>
+                                    <dt>loadfromfile(file: Any) -> Self</dt>
+                                    <dd><p>This classmethod loads a new instance from a given file.</p></dd>
+                                    <dt>loads(string: Any) -> Self</dt>
+                                    <dd><p>This classmethod loads a new instance from a given string.</p></dd>
+                                </dl>
+                            </dd>
+                            <dt id="2--test">texthold.test() -> unittest.TextTestRunner</dt>
                             <dd class="testingCorpus"></dd>
                         </dl>
                     </dd>
