@@ -1,0 +1,89 @@
+Introduction
+------------
+
+This project provides a class that holds text.
+
+Installation
+------------
+
+To install texthold, you can use pip. Open your terminal and run:
+
+.. code-block:: shell
+    
+    pip install texthold
+
+Features
+--------
+
+``texthold.Holder(data: Iterable = ()) -> None``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This subclass of datahold.OkayList stores text as a list of lines.
+
+``data: list``
+^^^^^^^^^^^^^^
+
+This property represents the lines of text.
+
+``dump(stream: BinaryIO) -> None``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This method dumps the data into a byte stream.
+
+``dumpintofile(file: Any) -> None``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This method dumps the data into a file.
+
+``dumps() -> str``
+^^^^^^^^^^^^^^^^^^
+
+This method dumps the data as a string.
+
+``load(stream: BinaryIO) -> Self``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This classmethod loads a new instance from a given byte stream.
+
+``loadfromfile(file: Any) -> Self``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This classmethod loads a new instance from a given file.
+
+``loads(string: Any) -> Self``
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This classmethod loads a new instance from a given string.
+
+``texthold.test() -> unittest.TextTestRunner``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This project can be tested through its test function.
+
+.. code-block:: python
+    
+    import texthold
+    texthold.test()
+
+License
+-------
+
+This project is licensed under the MIT License.
+
+Links
+-----
+
+- Download: https://pypi.org/project/texthold/#files
+- Index: https://pypi.org/project/texthold/
+- Source: https://github.com/johannes-programming/texthold/
+- Website: https://texthold.johannes-programming.online/
+
+Impressum
+---------
+
+**Johannes Programming**
+
+- Name: Johannes
+- Email: johannes.programming@gmail.com
+- Homepage: https://www.johannes-programming.online/
+- Gravatar: https://www.johannes-programming.fyi/

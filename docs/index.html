@@ -1,119 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <link rel="icon" type="image/svg+xml" href="https://www.johannes-programming.online/icon.svg">
+        <link rel="stylesheet" href="https://www.johannes-programming.online/versioning/styles.css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>texthold</title>
     </head>
     <body>
-        <dl id="top" class="heading0">
-            <dt>
-                <a>texthold</a>
-                <p>
-                    Minor Version:
-                    <select id="version">
-                        <option>1.0</option>
-                        <option selected>2.0</option>
-                    </select>
-                </p>
-            </dt>
-            <dd>
-                <dl class="heading1">
-                    <dt id="intro">Introduction</dt>
-                    <dd id="introCorpus">
-                        <p>This project provides a class that holds text.</p>
-                    </dd>
-                    <dt id="links">Links</dt>
-                    <dd id="linksCorpus"></dd>
-                    <dt id="install">Installation</dt>
-                    <dd id="installCorpus"></dd>
-                    <dt id="features">Features</dt>
-                    <dd id="featuresCorpus">
-                        <dl class="heading4" version="1.0">
-                            <dt id="1--Holder">texthold.Holder(data: Iterable = ()) -> None</dt>
-                            <dd>
-                                <p>
-                                    This subclass of <code>datahold.OkayList</code> stores text as a list of lines.
-                                </p>
-                                <dl class="heading4">
-                                    <dt>data: list</dt>
-                                    <dd>
-                                        <p>
-                                            This property represents the lines of text.
-                                        </p>
-                                    </dd>
-                                    <dt>dump(stream: BinaryIO) -> None</dt>
-                                    <dd><p>This method dumps the data into a byte stream.</p></dd>
-                                    <dt>dumpintofile(file: Any) -> None</dt>
-                                    <dd><p>This method dumps the data into a file.</p></dd>
-                                    <dt>dumps() -> str</dt>
-                                    <dd><p>This method dumps the data as a string.</p></dd>
-                                    <dt>load(stream: BinaryIO) -> Self</dt>
-                                    <dd><p>This classmethod loads a new instance from a given byte stream.</p></dd>
-                                    <dt>loadfromfile(file: Any) -> Self</dt>
-                                    <dd><p>This classmethod loads a new instance from a given file.</p></dd>
-                                    <dt>loads(string: Any) -> Self</dt>
-                                    <dd><p>This classmethod loads a new instance from a given string.</p></dd>
-                                </dl>
-                            </dd>
-                            <dt id="1--test">texthold.test() -> unittest.TextTestRunner</dt>
-                            <dd class="testingCorpus"></dd>
-                        </dl>
-                        <dl class="heading4" version="2.0">
-                            <dt id="2--Holder">texthold.TextHolder(data: Iterable = ()) -> None</dt>
-                            <dd>
-                                <p>
-                                    This subclass of <code>datahold.HoldList</code> stores text as a list of lines.
-                                </p>
-                                <dl class="heading4">
-                                    <dt>__hash__ = ()</dt>
-                                    <dd></dd>
-                                    <dt>__slots__ = ()</dt>
-                                    <dd></dd>
-                                    <dt>data: tuple[str, ...]</dt>
-                                    <dd>
-                                        <p>
-                                            This property represents the lines of text.
-                                        </p>
-                                    </dd>
-                                    <dt>dump(stream: BinaryIO) -> None</dt>
-                                    <dd><p>This method dumps the data into a byte stream.</p></dd>
-                                    <dt>dumpintofile(file: Any) -> None</dt>
-                                    <dd><p>This method dumps the data into a file.</p></dd>
-                                    <dt>dumps() -> str</dt>
-                                    <dd><p>This method dumps the data as a string.</p></dd>
-                                    <dt>load(stream: BinaryIO) -> Self</dt>
-                                    <dd><p>This classmethod loads a new instance from a given byte stream.</p></dd>
-                                    <dt>loadfromfile(file: Any) -> Self</dt>
-                                    <dd><p>This classmethod loads a new instance from a given file.</p></dd>
-                                    <dt>loads(string: Any) -> Self</dt>
-                                    <dd><p>This classmethod loads a new instance from a given string.</p></dd>
-                                </dl>
-                            </dd>
-                            <dt id="2--test">texthold.test() -> unittest.TextTestRunner</dt>
-                            <dd class="testingCorpus"></dd>
-                        </dl>
-                    </dd>
-                    <dt id="license">License</dt>
-                    <dd id="licenseCorpus"></dd>
-                    <dt id="impressum">Impressum</dt>
-                    <dd id="impressumCorpus"></dd>
-                </dl>
-            </dd>
-        </dl>
+        <header>
+            <a href="https://texthold.johannes-programming.online/">texthold</a>
+            <p>
+                Minor Version:
+                <select id="version">
+                    <option>1.0</option>
+                    <option selected>2.0</option>
+                </select>
+            </p>
+        </header>
+        <div id="rst"></div>
     </body>
-    <script type="module">
-        import {
-            setupImpressumCorpus,
-            setupInstallCorpus,
-            setupLicenseCorpus,
-            setupLinksCorpus,
-            setupTestingCorpus,
-            addMetaAndLinkTags,
-        } from "https://www.johannes-programming.online/main.js";
-        setupImpressumCorpus("texthold");
-        setupInstallCorpus("texthold");
-        setupLicenseCorpus("texthold");
-        setupLinksCorpus("texthold");
-        setupTestingCorpus("texthold");
-        addMetaAndLinkTags();
-    </script>
+    <script type="module" src="https://www.johannes-programming.online/versioning/main.js"></script>
 </html>
