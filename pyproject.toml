@@ -26,7 +26,7 @@ keywords = []
 name = "texthold"
 readme = "README.rst"
 requires-python = ">=3.11"
-version = "0.0.4"
+version = "0.0.4+local"
 
 [project.license]
 file = "LICENSE.txt"
