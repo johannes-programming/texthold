@@ -24,7 +24,7 @@ Features
 ``texthold.TextHolder(data: Iterable = (), /)``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-This subclass of ``datahold.HoldList[str]`` stores lines of text.
+This subclass of ``datahold.BaseDataList[str]`` and ``datahold.DataList[object]`` stores lines of text.
 
 ``__slots__ = ()``
 ^^^^^^^^^^^^^^^^^^

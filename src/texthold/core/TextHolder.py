@@ -2,18 +2,22 @@ from collections.abc import Iterable
 from typing import BinaryIO, Self, TextIO
 
 import setdoc
-from datahold import HoldList
+import datahold
 
 __all__ = ["TextHolder"]
 
 
-class TextHolder(HoldList[str]):
+class BaseTextHolder(datahold.BaseDataList[str]):
+    __slots__=()
 
-    __slots__ = ()
+
+class TextHolder(BaseTextHolder, datahold.DataList[object]):
+
+    __slots__ = ("_data",)
 
     @setdoc.basic
     def __init__(self: Self, data: Iterable[object] = (), /) -> None:
-        self._data = ()
+        self._data :tuple[str, ...]= ()
         self.data = data
 
     @property
