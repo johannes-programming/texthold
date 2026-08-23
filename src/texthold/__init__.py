@@ -1,2 +1,1 @@
-from texthold.core import *
-from texthold.tests import *
+from texthold.core.TextHolder import TextHolder
