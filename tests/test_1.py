@@ -1,3 +1,8 @@
+from __future__ import annotations
+
+__all__: list[str] = ["TestHolder"]
+
+
 import io
 import os
 import tempfile
@@ -5,8 +10,6 @@ import unittest
 from typing import Any, Self
 
 from texthold.core.TextHolder import TextHolder
-
-__all__ = ["TestHolder"]
 
 
 class TestHolder(unittest.TestCase):

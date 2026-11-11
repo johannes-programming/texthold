@@ -1,10 +1,12 @@
+from __future__ import annotations
+
+__all__: list[str] = ["TextHolder"]
+
 from collections.abc import Iterable
 from typing import BinaryIO, Self, TextIO
 
 import datahold
 import setdoc
-
-__all__ = ["TextHolder"]
 
 
 class BaseTextHolder(datahold.BaseDataList[str]):

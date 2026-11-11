@@ -1,12 +1,15 @@
-import os
+from __future__ import annotations
+
+__all__: list[str] = ["TestHolder"]
+
+
 import tempfile
 import unittest
-from io import BytesIO
+from io import BytesIO, TextIOWrapper
+from pathlib import Path
 from typing import Any, Self
 
 from texthold.core.TextHolder import TextHolder
-
-__all__ = ["TestHolder"]
 
 
 class TestHolder(unittest.TestCase):
@@ -43,16 +46,20 @@ class TestHolder(unittest.TestCase):
         content: Any
         holder: TextHolder
         loaded_holder: TextHolder
+        stream: TextIOWrapper
+        tmp: str
+        tmp_dir: Path
+        tmp_file: Path
         holder = TextHolder(["line1", "line2"])
-        with tempfile.NamedTemporaryFile(delete=False) as temp_file:
-            temp_file.close()
-            holder.dumpintofile(temp_file.name)
-            with open(temp_file.name, "r") as f:
-                content = f.read()
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp_dir = Path(tmp)
+            tmp_file = tmp_dir / "a"
+            holder.dumpintofile(str(tmp_file))
+            with open(str(tmp_file), "r") as stream:
+                content = stream.read()
                 self.assertEqual(content, "line1\nline2\n")
-            loaded_holder = TextHolder.loadfromfile(temp_file.name)
+            loaded_holder = TextHolder.loadfromfile(str(tmp_file))
             self.assertEqual(loaded_holder.data, ("line1", "line2"))
-            os.unlink(temp_file.name)
 
     def test_loads(self: Self, /) -> None:
         holder: TextHolder
