@@ -13,7 +13,6 @@ from texthold.core.TextHolder import TextHolder
 
 
 class TestHolder(unittest.TestCase):
-
     def test_data_property(self: Self, /) -> None:
         holder: TextHolder
         holder = TextHolder(["line1", "line2"])

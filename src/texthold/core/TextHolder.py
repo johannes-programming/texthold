@@ -14,7 +14,6 @@ class BaseTextHolder(datahold.BaseDataList[str]):
 
 
 class TextHolder(BaseTextHolder, datahold.DataList[object]):
-
     __slots__ = ("_data",)
 
     @setdoc.basic

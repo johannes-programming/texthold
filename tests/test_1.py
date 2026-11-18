@@ -13,7 +13,6 @@ from texthold.core.TextHolder import TextHolder
 
 
 class TestHolder(unittest.TestCase):
-
     def test_data_property_getter(self: Self, /) -> None:
         "This test tests the data property getter."
         holder: TextHolder
