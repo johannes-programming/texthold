@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import Any
 
 import tomli_w
+from packaging.requirements import Requirement
 from packaging.utils import canonicalize_name
 
 
@@ -45,26 +46,34 @@ def parse_args(args: abc.Iterable[str] | None = None) -> argparse.Namespace:
 def run(project: Path, /) -> None:
     data: dict[str, Any]
     instream: io.BufferedReader
-    name: str
     outstream: io.BufferedWriter
     pyproject: Path
     pyproject = project / "pyproject.toml"
     with open(pyproject, "rb") as instream:
         data = tomllib.load(instream)
-    name = canonicalize_name(data["project"]["name"])
-    data["project"]["name"] = name
-    data["project"]["urls"][
-        "Download"
-    ] = f"https://pypi.org/project/{name}/#files"
-    data["project"]["urls"]["Index"] = f"https://pypi.org/project/{name}/"
-    data["project"]["urls"][
-        "Source"
-    ] = f"https://github.com/johannes-programming/{name}/"
-    data["project"]["urls"][
-        "Website"
-    ] = f"https://{name}.johannes-programming.online/"
+    data["project"] = run_project(data["project"])
     with open(pyproject, "wb") as outstream:
         tomli_w.dump(data, outstream)
+
+
+def run_dependency(dependency: str) -> str:
+    req: Requirement
+    req = Requirement(dependency)
+    req.name = canonicalize_name(req.name)
+    return str(req)
+
+
+def run_project(data: dict[str, Any], /) -> dict[str, Any]:
+    name: str
+    name = canonicalize_name(data["name"])
+    data.setdefault("dependencies", [])
+    data["dependencies"] = list(map(run_dependency, data["dependencies"]))
+    data["name"] = name
+    data["urls"]["Download"] = f"https://pypi.org/project/{name}/#files"
+    data["urls"]["Index"] = f"https://pypi.org/project/{name}/"
+    data["urls"]["Source"] = f"https://github.com/johannes-programming/{name}/"
+    data["urls"]["Website"] = f"https://{name}.johannes-programming.online/"
+    return data
 
 
 if __name__ == "__main__":

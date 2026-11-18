@@ -1,5 +1,5 @@
 .ONESHELL:
-.PHONY: all add amend beautiful black build canonicalize clean commit commit-version dist echo isort jacobus py311 py312 py313 py314 py315 pypi pyproject-fmt rebase reset test toml_sorted upload version
+.PHONY: all add amend beautiful beautiful-other beautiful-py beautiful-toml black build canonicalize clean commit commit-version dist echo isort jacobus jacobus-other jacobus-py jacobus-toml py311 py312 py313 py314 py315 pypi pyproject-fmt rebase reset ruff test toml-sorted upload version
 SHELL := /bin/zsh
 
 all: beautiful commit-version
@@ -10,7 +10,13 @@ add:
 amend: add
 	git commit --amend --no-edit;
 
-beautiful: canonicalize isort black jacobus toml_sorted
+beautiful: beautiful-other beautiful-py beautiful-toml
+
+beautiful-other: jacobus-other
+
+beautiful-py: jacobus-py ruff
+
+beautiful-toml: canonicalize toml-sorted pyproject-fmt
 
 black: py311
 	conda run -n py311 pip install 'black>=24.5,<26' >/dev/null;
@@ -45,12 +51,22 @@ isort: py311
 	conda run -n py311 pip install 'isort>=6.0,<7' >/dev/null;
 	conda run -n py311 isort . ;
 
-jacobus: py311
+jacobus: jacobus-other jacobus-py jacobus-toml py311
+
+jacobus-other: py311
 	conda run -n py311 pip install 'jacobus>=2.4,<3' >/dev/null;
-	conda run -n py311 python -m jacobus @make/jacobus.txt;
 	conda run -n py311 python -m jacobus @make/jacobus_empty.txt;
 	cat make/manifest.txt >> MANIFEST.in;
 	conda run -n py311 python -m jacobus @make/jacobus_sort.txt;
+	conda run -n py311 python -m jacobus @make/jacobus_other_indent.txt;
+
+jacobus-py: py311
+	conda run -n py311 pip install 'jacobus>=2.4,<3' >/dev/null;
+	conda run -n py311 python -m jacobus @make/jacobus_py.txt;
+
+jacobus-toml: py311
+	conda run -n py311 pip install 'jacobus>=2.4,<3' >/dev/null;
+	conda run -n py311 python -m jacobus @make/jacobus_toml.txt;
 
 py311:
 	conda run -n base python make/env.py py311 --python=3.11;
@@ -71,13 +87,18 @@ pypi: dist upload
 
 pyproject-fmt: py311
 	conda run -n py311 pip install "pyproject-fmt<3,>=2.30";
-	conda run -n py311 pyproject-fmt pyproject.toml;
+	conda run -n py311 pyproject-fmt pyproject.toml || conda run -n py311 pyproject-fmt --check pyproject.toml;
 
 rebase:
 	git rebase --empty=drop --interactive $(PARAMS);
 
 reset:
 	git reset HEAD~1;
+
+ruff: py311
+	conda run -n py311 python -m pip install "ruff>=0.14,<1";
+	conda run -n py311 ruff check --fix . ;
+	conda run -n py311 ruff format . ;
 
 test: dist py311
 	mkdir dist/out/ ;
@@ -96,8 +117,9 @@ test: dist py311
 	conda run -n test_texthold_tests python run_tests.py > dist/out/tests_out.txt 2> dist/out/tests_err.txt || true;
 	zip -r dist/out.zip dist/out;
 
-toml_sorted: py311
+toml-sorted: py311
 	conda run -n py311 pip install 'toml-sorted>=2.2,<3' >/dev/null;
+	conda run -n py311 python -m toml_sorted '**/*.toml';
 	conda run -n py311 python -m toml_sorted @make/toml_sorted_pyproject.txt;
 	conda run -n py311 python -m toml_sorted @make/toml_sorted_testdata.txt;
 
